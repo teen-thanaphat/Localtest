@@ -21,6 +21,8 @@ function Mshow() {
     setSearchTerm(event.target.value);
   }
 
+  const displayname = sessionStorage.getItem('displayname');
+
   const filtered = orderm.filter(val =>
     val.durablearticles_name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -54,18 +56,24 @@ function Mshow() {
             </tr>
           </thead>
           <tbody>
-            {filtered.map((val, index) => (
-              <tr key={val.repair_durablearticles_Id}>
-                <td>{index + 1}</td>
-                <td>{val.durablearticles_name}</td>
-                <td>{val.room}</td>
-                <td>{val.repair_img}</td>
-                <td>{val.repair_detail}</td>
-                <td>{val.Informer}</td>
-                <td>{(val.repair_durablearticles_date == null) ? "" : new Date(val.repair_durablearticles_date).toLocaleDateString('en-GB',{day: 'numeric', month: 'numeric', year: 'numeric'})}</td>
-                <td>{val.repair_status}</td>
-              </tr>
-            ))}
+            {filtered.map((val, index) => {
+              if (val.Informer === displayname) {
+                return (
+                  <tr key={val.repair_durablearticles_Id}>
+                    <td>{index + 1}</td>
+                    <td>{val.durablearticles_name}</td>
+                    <td>{val.room}</td>
+                    <td>{val.repair_img}</td>
+                    <td>{val.repair_detail}</td>
+                    <td>{val.Informer}</td>
+                    <td>{(val.repair_durablearticles_date == null) ? "" : new Date(val.repair_durablearticles_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'numeric', year: 'numeric' })}</td>
+                    <td>{val.repair_status}</td>
+                  </tr>
+                )
+              } else {
+                return null;
+              }
+            })}
           </tbody>
         </table>
       </div>
