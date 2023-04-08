@@ -15,14 +15,19 @@ import Moveroom from './pages/moveroom';
 
 import Mlist from './pages/mlist';
 import Mcart from './pages/mcart';
+import Mlist2 from './pages/mlist2';
+import Mcart2 from './pages/mcart2';
 import Mshow from './pages/mshow';
 import Mshow2 from './pages/mshow2';
+
 import Mstock from './pages/mstock';
 import Mstocklist from './pages/mstocklist';
 import Mstockshow from './pages/mstockshow';
 
 import Dlist from './pages/dlist';
 import Dcart from './pages/dcart';
+import Dlist2 from './pages/dlist2';
+import Dcart2 from './pages/dcart2';
 import Dshow from './pages/dshow';
 import Dshow2 from './pages/dshow2';
 
@@ -41,7 +46,8 @@ import Repair2 from './pages/repair2';
 import Repairshow from './pages/repairshow';
 import Sorder from './pages/sorder';
 
-import Mimport from './pages/mimport';
+import Mdetail from './pages/mdetail';
+import Ddetail from './pages/ddetail';
 
 function App() {
   const handleLogout = () => {
@@ -80,8 +86,8 @@ function App() {
             <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
-            <a class="nav-link active" aria-current="page"><NavLink to="/mlist">วัสดุ</NavLink></a>
-            <a class="nav-link active" aria-current="page"><NavLink to="/dlist">ครุภัณฑ์</NavLink></a>
+            <a class="nav-link active" aria-current="page"><NavLink to="/mlist2">วัสดุ</NavLink></a>
+            <a class="nav-link active" aria-current="page"><NavLink to="/dlist2">ครุภัณฑ์</NavLink></a>
           </div>
         </div></a>
 
@@ -156,7 +162,9 @@ function App() {
           <Route path='/moveroom' element={<Moveroom />}></Route>
 
           <Route path='/mlist' element={<Mlist />}></Route>
+          <Route path='/mlist2' element={<Mlist2 />}></Route>
           <Route path='/mcart/:material_Id' element={<Mcart />}></Route>
+          <Route path='/mcart2/:material_Id' element={<Mcart2 />}></Route>
           <Route path='/mshow' element={<Mshow />}></Route>
           <Route path='/mshow2/:order_material_Id' element={<Mshow2 />}></Route>
           <Route path='/mshow2/:material_Id' element={<Mshow2 />}></Route>
@@ -168,6 +176,8 @@ function App() {
 
           <Route path='/dlist' element={<Dlist />}></Route>
           <Route path='/dcart/:durablearticles_Id' element={<Dcart />}></Route>
+          <Route path='/dlist2' element={<Dlist2 />}></Route>
+          <Route path='/dcart2/:durablearticles_Id' element={<Dcart2 />}></Route>
           <Route path='/dshow' element={<Dshow />}></Route>
           <Route path='/dshow2/:order_durablearticles_Id' element={<Dshow2 />}></Route>
           <Route path='/dshow2/:durablearticles_Id' element={<Dshow2 />}></Route>
@@ -186,7 +196,8 @@ function App() {
           <Route path='/repairshow' element={<Repairshow />}></Route>
           <Route path='/sorder' element={<Sorder />}></Route>
 
-          <Route path='/mimport' element={<Mimport />}></Route>
+          <Route path='/mdetail/:material_Id' element={<Mdetail />}></Route>
+          <Route path='/ddetail/:durablearticles_Id' element={<Ddetail />}></Route>
         </Routes>
       </div>
     </BrowserRouter>
@@ -194,170 +205,3 @@ function App() {
 }
 
 export default App;
-
-/*import './App.css';
-import { BrowserRouter, NavLink, Routes, Route } from 'react-router-dom'
-
-import Home from './pages/home';
-
-import Materialadd from './pages/materialadd';
-import Materialshow from './pages/materialshow';
-import Materialedit from './pages/materialedit';
-
-import Durablearticlesadd from './pages/durablearticlesadd';
-import Durablearticlesshow from './pages/durablearticlesshow';
-import Durablearticlesedit from './pages/durablearticlesedit';
-
-import Moveroom from './pages/moveroom';
-
-import Mlist from './pages/mlist';
-import Mcart from './pages/mcart';
-import Mshow from './pages/mshow';
-import Mshow2 from './pages/mshow2';
-import Mstock from './pages/mstock';
-import Mstocklist from './pages/mstocklist';
-import Mstockshow from './pages/mstockshow';
-
-import Dlist from './pages/dlist';
-import Dcart from './pages/dcart';
-import Dshow from './pages/dshow';
-import Dshow2 from './pages/dshow2';
-
-import Dreturn from'./pages/dreturn';
-import Dreturnlist from './pages/dreturnlist';
-import Dreturnshow from './pages/dreturnshow';
-
-import Signin from './pages/Signin';
-
-import Qrcode from './pages/qrcode';
-
-function App() {
-
-  return (
-    <BrowserRouter>
-      <div class="sidenav">
-        <a class="navbar-brand" ><NavLink to="/Signin">Home</NavLink></a>
-        <a><div class="dropdown">
-          <button class="dropbtn">จัดการวัสดุ
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a class="nav-link active" aria-current="page"><NavLink to="/materialadd">เพิ่ม</NavLink></a>
-            <a class="nav-link active" aria-current="page"><NavLink to="/materialshow">แสดง</NavLink></a>
-          </div>
-        </div></a>
-
-        <a><div class="dropdown">
-          <button class="dropbtn">จัดการครุภัณฑ์
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a class="nav-link active" aria-current="page"><NavLink to="/durablearticlesadd">เพิ่ม</NavLink></a>
-            <a class="nav-link active" aria-current="page"><NavLink to="/durablearticlesshow">แสดง</NavLink></a>
-          </div>
-        </div></a>
-
-        <a><div class="dropdown">
-          <button class="dropbtn">เพิ่มสต็อก
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a class="nav-link active" aria-current="page"><NavLink to="/mstocklist">เพิ่มสต็อกวัสดุ</NavLink></a>
-            <a class="nav-link active" aria-current="page"><NavLink to="/mstockshow">ดูการเพิ่มสต็อกวัสดุ</NavLink></a>
-          </div>
-        </div></a>
-
-        <a><div class="dropdown">
-          <button class="dropbtn">จัดการใบเบิก
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a class="nav-link active" aria-current="page"><NavLink to="/mshow">วัสดุ</NavLink></a>
-            <a class="nav-link active" aria-current="page"><NavLink to="/dshow">ครุภัณฑ์</NavLink></a>
-          </div>
-        </div></a>
-
-        <a><div class="dropdown">
-          <button class="dropbtn">จัดการคืน
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a class="nav-link active" aria-current="page"><NavLink to="/dreturnlist">คืนครุภัณฑ์</NavLink></a>
-            <a class="nav-link active" aria-current="page"><NavLink to="/dreturnshow">รายการคืน</NavLink></a>
-          </div>
-        </div></a>
-
-        <a><div>
-          <a class="nav-link active" aria-current="page"><NavLink to="/moveroom">จัดการแจ้งซ่อม</NavLink></a>
-        </div></a>
-
-        <a><div>
-          <a class="nav-link active" aria-current="page"><NavLink to="/moveroom">แจ้งย้ายห้อง</NavLink></a>
-        </div></a>
-
-        <a><div class="dropdown">
-          <button class="dropbtn">ออกรายงาน
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a class="nav-link active" aria-current="page"><NavLink to="/">วัสดุ</NavLink></a>
-            <a class="nav-link active" aria-current="page"><NavLink to="/">ครุภัณฑ์</NavLink></a>
-          </div>
-        </div></a>
-
-        <a><div class="dropdown">
-          <button class="dropbtn">เบิก
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a class="nav-link active" aria-current="page"><NavLink to="/mlist">วัสดุ</NavLink></a>
-            <a class="nav-link active" aria-current="page"><NavLink to="/dlist">ครุภัณฑ์</NavLink></a>
-          </div>
-        </div></a>
-
-        <div>
-          <a class="nav-link active" aria-current="page"><NavLink to="/">ออกจากระบบ</NavLink></a>
-        </div>
-      </div>
-
-      <div class="content">
-        <Routes>
-          <Route path='/' element={<Home />}></Route>
-          <Route path='/materialadd' element={<Materialadd />}></Route>
-          <Route path='/materialshow' element={<Materialshow />}></Route>
-          <Route path='/materialedit/:material_Id' element={<Materialedit />}></Route>
-          <Route path='/durablearticlesadd' element={<Durablearticlesadd />}></Route>
-          <Route path='/durablearticlesshow' element={<Durablearticlesshow />}></Route>
-          <Route path='/durablearticlesedit/:durablearticles_Id' element={<Durablearticlesedit />}></Route>
-          <Route path='/moveroom' element={<Moveroom />}></Route>
-
-          <Route path='/mlist' element={<Mlist />}></Route>
-          <Route path='/mcart/:material_Id' element={<Mcart />}></Route>
-          <Route path='/mshow' element={<Mshow />}></Route>
-          <Route path='/mshow2/:order_material_Id' element={<Mshow2 />}></Route>
-          <Route path='/mshow2/:material_Id' element={<Mshow2 />}></Route>
-          <Route path='/mstock/:material_Id' element={<Mstock />}></Route>
-          <Route path='/mstocklist' element={<Mstocklist />}></Route>
-          <Route path='/mstockshow' element={<Mstockshow />}></Route>
-
-          <Route path='/dlist' element={<Dlist />}></Route>
-          <Route path='/dcart/:durablearticles_Id' element={<Dcart />}></Route>
-          <Route path='/dshow' element={<Dshow />}></Route>
-          <Route path='/dshow2/:order_durablearticles_Id' element={<Dshow2 />}></Route>
-          <Route path='/dshow2/:durablearticles_Id' element={<Dshow2 />}></Route>
-
-          <Route path='/dreturnlist' element={<Dreturnlist />}></Route>
-          <Route path='/dreturn/:order_durablearticles_Id' element={<Dreturn />}></Route>
-          <Route path='/dreturnshow' element={<Dreturnshow />}></Route>
-
-          <Route path='/Signin' element={<Signin />}></Route>
-          <Route path='/qrcode/:durablearticles_Id' element={<Qrcode />}></Route>
-
-        </Routes>
-      </div>
-    </BrowserRouter>
-  )
-}
-
-export default App;*/
-

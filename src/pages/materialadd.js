@@ -49,7 +49,25 @@ function Materialadd() {
     reader.onload = (event) => {
       const text = event.target.result;
       const rows = text.split("\n").map((row) => row.split(","));
-      setCSVData(rows);
+      console.log(rows);
+      console.log(rows.length);
+      const formattedRows = rows.map((row, rowIndex) => {
+        if (rowIndex === 0) return row; // ใช้ header row เดิม
+        return row.map((cell, cellIndex) => {
+          if (cellIndex >= 5 && cellIndex <= 7) {
+            const dateParts = cell.split("/");
+            if (dateParts.length === 3) {
+              const day = dateParts[0].padStart(2, "0");
+              const month = dateParts[1].padStart(2, "0");
+              const year = dateParts[2];
+              return `${year}-${month}-${day}`;
+            }
+          }
+          return cell;
+        });
+      });
+      console.log(formattedRows);
+      setCSVData(formattedRows);
     };
     reader.readAsText(file);
   };
@@ -68,6 +86,7 @@ function Materialadd() {
         type_material_Id,
         company_Id,
       ] = CSVData[i];
+      console.log(CSVData[i]);
       Axios.post('http://localhost:3001/creatematerial', {
         material_Id,
         material_name,
@@ -148,7 +167,7 @@ function Materialadd() {
               <input
                 type="text"
                 className="input"
-                pattern="[0-9]*" min="0"
+                pattern="[0-9]*(\.[0-9]{0,2})?" min="0"
                 value={material_price}
                 onChange={(e) => setMaterial_price(e.target.value)}
                 placeholder=""

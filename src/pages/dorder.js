@@ -70,7 +70,7 @@ function Dshow() {
                 <tr key={val.order_durablearticles_Id}>
                   <td>{val.durablearticles_Id}</td>
                   <td>{val.durablearticles_name}</td>
-                  <td>{(val.order_durablearticles_date == null) ? "" : new Date(val.order_durablearticles_date).toLocaleDateString()}</td>
+                  <td>{(val.order_durablearticles_date == null) ? "" : new Date(val.order_durablearticles_date).toLocaleDateString('en-GB',{day: 'numeric', month: 'numeric', year: 'numeric'})}</td>
                   <td>{val.username}</td>
                   <td>{val.order_durablearticles_status}</td>
                 </tr>

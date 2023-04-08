@@ -60,7 +60,7 @@ function Dshow() {
                 <td>{val.durablearticles_Id}</td>
                 <td>{val.durablearticles_name}</td>
                 <td>{val.order_durablearticles_location}</td>
-                <td>{(val.order_durablearticles_date == null) ? "" : new Date(val.order_durablearticles_date).toLocaleDateString()}</td>
+                <td>{(val.order_durablearticles_date == null) ? "" : new Date(val.order_durablearticles_date).toLocaleDateString('en-GB',{day: 'numeric', month: 'numeric', year: 'numeric'})}</td>
                 <td>{val.username}</td>
                 <td>{val.order_durablearticles_status === null ?
                   <Link to={`/dshow2/${val.order_durablearticles_Id}`} className="btn btn-success">จัดการ</Link>

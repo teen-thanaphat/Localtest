@@ -72,7 +72,7 @@ function Mshow() {
                   <td>{val.material_Id}</td>
                   <td>{val.material_name}</td>
                   <td>{val.order_material_quantity}</td>
-                  <td>{(val.order_material_date == null) ? "" : new Date(val.order_material_date).toLocaleDateString()}</td>
+                  <td>{(val.order_material_date == null) ? "" : new Date(val.order_material_date).toLocaleDateString('en-GB',{day: 'numeric', month: 'numeric', year: 'numeric'})}</td>
                   <td>{val.username}</td>
                   <td>{val.order_material_status}</td>
                 </tr>

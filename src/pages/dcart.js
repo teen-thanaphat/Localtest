@@ -8,7 +8,6 @@ const Dcart = () => {
 
     const [order_durablearticles_Id, setOrder_durablearticles_Id] = useState("");
     const [order_durablearticles_location, setOrder_durablearticles_location] = useState("");
-    //const [order_durablearticles_date, setOrder_durablearticles_date] = useState("");
     const [order_durablearticles_date, setOrder_durablearticles_date] = useState(new Date().toISOString().slice(0, 10));
     const displayname = sessionStorage.getItem('displayname');
     const username = displayname;

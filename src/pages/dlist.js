@@ -58,7 +58,7 @@ function Dlist() {
                 <td>{val.durablearticles_name}</td>
                 <td>{val.durablearticles_unit}</td>
                 <td>{val.durablearticles_status}</td>
-                <td>{val.durablearticles_status === "เบิกได้" ? (
+                <td>{val.durablearticles_status != "เบิกไม่ได้" ? (
                   <Link to={`/dcart/${val.durablearticles_Id}`} class="btn btn-success">เบิก</Link>
                 ) : (
                   <button class="btn btn-danger" disabled>เบิก</button>

@@ -9,8 +9,9 @@ const Mcart = () => {
   const [order_material_Id, setOrder_material_Id] = useState("");
   const [order_material_quantity, setOrder_material_quantity] = useState("");
   const [order_material_date, setOrder_material_date] = useState(new Date().toISOString().slice(0, 10));
-  const displayname = sessionStorage.getItem('displayname');
-  const username = displayname;
+  //const displayname = sessionStorage.getItem('displayname');
+  //const username = displayname;
+  const [username, setUsername] = useState("")
 
   const [material_name, setMaterial_name] = useState("");
   const [material_brand, setMaterial_brand] = useState("");
@@ -118,7 +119,8 @@ const Mcart = () => {
               <input
                 type="text"
                 className="input"
-                value={displayname}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 placeholder=""
               />
             </div>

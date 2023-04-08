@@ -62,7 +62,7 @@ function Mshow() {
                 <td>{val.repair_img}</td>
                 <td>{val.repair_detail}</td>
                 <td>{val.Informer}</td>
-                <td>{(val.repair_durablearticles_date == null) ? "" : new Date(val.repair_durablearticles_date).toLocaleDateString()}</td>
+                <td>{(val.repair_durablearticles_date == null) ? "" : new Date(val.repair_durablearticles_date).toLocaleDateString('en-GB',{day: 'numeric', month: 'numeric', year: 'numeric'})}</td>
                 <td>{val.repair_status}</td>
               </tr>
             ))}

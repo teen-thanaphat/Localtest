@@ -67,12 +67,12 @@ function Durablearticlesedit() {
     }, []);
 
     return (
-        <div className="App container">
-            <div className="information">
+        <div className="Appcontainer">
+            <div className="add">
                 <form onSubmit={updateDurablearticles}>
                     <br />
-                    <div className="field">
-                        <label className="label">เลขครุภัณฑ์</label>
+                    <div className="field1">
+                        <label className="label">เลขครุภัณฑ์ :</label>
                         <div className="control">
                             <input
                                 type="text"
@@ -83,8 +83,8 @@ function Durablearticlesedit() {
                             />
                         </div>
                     </div>
-                    <div className="field">
-                        <label className="label">ชื่อ</label>
+                    <div className="field1">
+                        <label className="label">ชื่อ :</label>
                         <div className="control">
                             <input
                                 type="text"
@@ -95,8 +95,8 @@ function Durablearticlesedit() {
                             />
                         </div>
                     </div>
-                    <div className="field">
-                        <label className="label">ยี่ห้อ</label>
+                    <div className="field1">
+                        <label className="label">ยี่ห้อ :</label>
                         <div className="control">
                             <input
                                 type="text"
@@ -107,8 +107,8 @@ function Durablearticlesedit() {
                             />
                         </div>
                     </div>
-                    <div className="field">
-                        <label className="label">หน่วยนับ</label>
+                    <div className="field1">
+                        <label className="label">หน่วยนับ :</label>
                         <div className="control">
                             <input
                                 type="text"
@@ -120,21 +120,22 @@ function Durablearticlesedit() {
                             />
                         </div>
                     </div>
-                    <div className="field">
-                        <label className="label">ราคา</label>
+                    <div className="field1">
+                        <label className="label">ราคา :</label>
                         <div className="control">
                             <input
                                 type="text"
                                 className="input"
-                                pattern="[0-9]*" min="0"
+                                pattern="[0-9]*(\.[0-9]{0,2})?"
+                                min="0"
                                 value={durablearticles_price}
                                 onChange={(e) => setDurablearticles_price(e.target.value)}
                                 placeholder=""
                             />
                         </div>
                     </div>
-                    <div className="field">
-                        <label className="label">วันที่ซื้อ</label>
+                    <div className="field1">
+                        <label className="label">วันที่ซื้อ :</label>
                         <div className="control">
                             <input
                                 type="date"
@@ -144,8 +145,8 @@ function Durablearticlesedit() {
                             />
                         </div>
                     </div>
-                    <div className="field">
-                        <label className="label">วันที่รับ</label>
+                    <div className="field1">
+                        <label className="label">วันที่รับ :</label>
                         <div className="control">
                             <input
                                 type="date"
@@ -155,8 +156,8 @@ function Durablearticlesedit() {
                             />
                         </div>
                     </div>
-                    <div className="field">
-                        <label className="label">วันที่ซ่อม</label>
+                    <div className="field1">
+                        <label className="label">วันที่ซ่อม :</label>
                         <div className="control">
                             <input
                                 type="date"
@@ -166,8 +167,8 @@ function Durablearticlesedit() {
                             />
                         </div>
                     </div>
-                    <div className="field">
-                        <label className="label">วันที่ซ่อมเสร็จ</label>
+                    <div className="field1">
+                        <label className="label">วันที่ซ่อมเสร็จ :</label>
                         <div className="control">
                             <input
                                 type="date"
@@ -177,8 +178,8 @@ function Durablearticlesedit() {
                             />
                         </div>
                     </div>
-                    <div className="field">
-                        <label className="label">ประเภทครุภัณฑ์</label>
+                    <div className="field1">
+                        <label className="label">ประเภทครุภัณฑ์ :</label>
                         <div className="control">
                             <div className="select is-fullwidth">
                                 <select
@@ -208,8 +209,8 @@ function Durablearticlesedit() {
                             />
                         </div>
                     </div>
-                    <div className="field">
-                        <label className="label">เลขห้อง</label>
+                    <div className="field1">
+                        <label className="label">เลขห้อง :</label>
                         <div className="control">
                             <div className="select is-fullwidth">
                                 <select
@@ -242,8 +243,8 @@ function Durablearticlesedit() {
                             </div>
                         </div>
                     </div>
-                    <div className="field">
-                        <label className="label">สถานะการเบิก</label>
+                    <div className="field1">
+                        <label className="label">สถานะการเบิก :</label>
                         <div className="control">
                             <div className="select is-fullwidth">
                                 <select

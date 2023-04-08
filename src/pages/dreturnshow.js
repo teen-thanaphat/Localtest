@@ -58,7 +58,7 @@ function Dreturnshow() {
                 <td>{val.durablearticles_Id}</td>
                 <td>{val.durablearticles_name}</td>
                 <td>{val.return_durablearticles_status}</td>
-                <td>{(val.return_durablearticles_date == null) ? "" : new Date(val.return_durablearticles_date).toLocaleDateString()}</td>
+                <td>{(val.return_durablearticles_date == null) ? "" : new Date(val.return_durablearticles_date).toLocaleDateString('en-GB',{day: 'numeric', month: 'numeric', year: 'numeric'})}</td>
                 <td>{val.username}</td>
               </tr>
             ))}

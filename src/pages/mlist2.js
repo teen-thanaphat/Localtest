@@ -59,7 +59,7 @@ function Mlist() {
                 <td>{val.material_unit}</td>
                 <td>{val.material_remaining}</td>
                 <td>{val.material_remaining > 0 ?
-                  <Link to={`/mcart/${val.material_Id}`} className="btn btn-success">เบิก</Link>
+                  <Link to={`/mcart2/${val.material_Id}`} className="btn btn-success">เบิก</Link>
                   : (
                     <button class="btn btn-danger" disabled>เบิก</button>
                   )}</td>

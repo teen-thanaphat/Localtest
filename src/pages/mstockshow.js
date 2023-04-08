@@ -58,7 +58,7 @@ function Mstockshow() {
                 <td>{val.material_Id}</td>
                 <td>{val.material_name}</td>
                 <td>{val.stock_material_add}</td>
-                <td>{(val.stock_material_date == null) ? "" : new Date(val.stock_material_date).toLocaleDateString()}</td>
+                <td>{(val.stock_material_date == null) ? "" : new Date(val.stock_material_date).toLocaleDateString('en-GB',{day: 'numeric', month: 'numeric', year: 'numeric'})}</td>
                 <td>{val.username}</td>
               </tr>
             ))}

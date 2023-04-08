@@ -58,12 +58,12 @@ function Materialedit() {
   }, []);
 
   return (
-    <div className="App container">
-      <div className="information">
+    <div className="Appcontainer">
+      <div className="add">
         <form onSubmit={updateMaterial}>
           <br />
-          <div className="field">
-            <label className="label">เลขวัสดุ</label>
+          <div className="field1">
+            <label className="label">เลขวัสดุ :</label>
             <div className="control">
               <input
                 type="text"
@@ -74,8 +74,8 @@ function Materialedit() {
               />
             </div>
           </div>
-          <div className="field">
-            <label className="label">ชื่อวัสดุ</label>
+          <div className="field1">
+            <label className="label">ชื่อวัสดุ :</label>
             <div className="control">
               <input
                 type="text"
@@ -86,8 +86,8 @@ function Materialedit() {
               />
             </div>
           </div>
-          <div className="field">
-            <label className="label">ยี่ห้อ</label>
+          <div className="field1">
+            <label className="label">ยี่ห้อ :</label>
             <div className="control">
               <input
                 type="text"
@@ -98,8 +98,8 @@ function Materialedit() {
               />
             </div>
           </div>
-          <div className="field">
-            <label className="label">หน่วยนับ</label>
+          <div className="field1">
+            <label className="label">หน่วยนับ :</label>
             <div className="control">
               <input
                 type="text"
@@ -111,21 +111,22 @@ function Materialedit() {
               />
             </div>
           </div>
-          <div className="field">
-            <label className="label">ราคา</label>
+          <div className="field1">
+            <label className="label">ราคา :</label>
             <div className="control">
               <input
                 type="text"
                 className="input"
-                pattern="[0-9]*" min="0"
+                pattern="[0-9]*(\.[0-9]{0,2})?"
+                min="0"
                 value={material_price}
                 onChange={(e) => setMaterial_price(e.target.value)}
                 placeholder=""
               />
             </div>
           </div>
-          <div className="field">
-            <label className="label">คงเหลือ</label>
+          <div className="field1">
+            <label className="label">คงเหลือ :</label>
             <div className="control">
               <input
                 type="text"
@@ -137,8 +138,8 @@ function Materialedit() {
               />
             </div>
           </div>
-          <div className="field">
-            <label className="label">วันที่ซื้อ</label>
+          <div className="field1">
+            <label className="label">วันที่ซื้อ :</label>
             <div className="control">
               <input
                 type="date"
@@ -148,8 +149,8 @@ function Materialedit() {
               />
             </div>
           </div>
-          <div className="field">
-            <label className="label">วันที่รับ</label>
+          <div className="field1">
+            <label className="label">วันที่รับ :</label>
             <div className="control">
               <input
                 type="date"
@@ -159,8 +160,8 @@ function Materialedit() {
               />
             </div>
           </div>
-          <div className="field">
-            <label className="label">ประเภทวัสดุ</label>
+          <div className="field1">
+            <label className="label">ประเภทวัสดุ :</label>
             <div className="control">
               <div className="select is-fullwidth">
                 <select

@@ -45,6 +45,7 @@ function Mshow() {
                 <table class="table">
                     <thead>
                         <tr>
+                            <th scope="col">ลำดับ</th>
                             <th scope="col">เลขวัสดุที่เบิก</th>
                             <th scope="col">ชื่อวัสดุ</th>
                             <th scope="col">จำนวนที่เบิก</th>
@@ -58,10 +59,11 @@ function Mshow() {
                             if (val.username === displayname) {
                                 return (
                                     <tr key={val.order_material_Id}>
+                                        <td>{index + 1}</td>
                                         <td>{val.material_Id}</td>
                                         <td>{val.material_name}</td>
                                         <td>{val.order_material_quantity}</td>
-                                        <td>{(val.order_material_date == null) ? "" : new Date(val.order_material_date).toLocaleDateString()}</td>
+                                        <td>{(val.order_material_date == null) ? "" : new Date(val.order_material_date).toLocaleDateString('en-GB',{day: 'numeric', month: 'numeric', year: 'numeric'})}</td>
                                         <td>{val.username}</td>
                                         <td>{val.order_material_status}</td>
                                     </tr>

@@ -55,10 +55,29 @@ function Durablearticlesadd() {
         reader.onload = (event) => {
             const text = event.target.result;
             const rows = text.split("\n").map((row) => row.split(","));
-            setCSVData(rows);
+            console.log(rows);
+            console.log(rows.length);
+            const formattedRows = rows.map((row, rowIndex) => {
+                if (rowIndex === 0) return row; // ใช้ header row เดิม
+                return row.map((cell, cellIndex) => {
+                    if (cellIndex >= 5 && cellIndex <= 9) {
+                        const dateParts = cell.split("/");
+                        if (dateParts.length === 3) {
+                            const day = dateParts[0].padStart(2, "0");
+                            const month = dateParts[1].padStart(2, "0");
+                            const year = dateParts[2];
+                            return `${year}-${month}-${day}`;
+                        }
+                    }
+                    return cell;
+                });
+            });
+            console.log(formattedRows);
+            setCSVData(formattedRows);
         };
         reader.readAsText(file);
     };
+
 
     const handleFileUpload = () => {
         for (let i = 1; i < CSVData.length; i++) {
@@ -160,7 +179,8 @@ function Durablearticlesadd() {
                             <input
                                 type="text"
                                 className="input"
-                                pattern="[0-9]*" min="0"
+                                pattern="[0-9]*(\.[0-9]{0,2})?"
+                                min="0"
                                 value={durablearticles_price}
                                 onChange={(e) => setDurablearticles_price(e.target.value)}
                                 placeholder=""
@@ -271,7 +291,8 @@ function Durablearticlesadd() {
                                     <option value="78-615">78-615</option>
                                     <option value="78-616">78-616</option>
                                     <option value="78-617">78-617</option>
-                                    <option value="78-618">78-618</option>
+                                    <option value="78-618/1">78-618/1</option>
+                                    <option value="78-618/2">78-618/2</option>
                                     <option value="78-619">78-619</option>
                                     <option value="78-620">78-620</option>
                                     <option value="ไม่ทราบ">ไม่ทราบ</option>
@@ -301,8 +322,8 @@ function Durablearticlesadd() {
                         </button>
                     </div>
                 </form>
-            </div><br/>
-            
+            </div><br />
+
             <div className="field1">
                 <label className="label" >อัพโหลด CSV:</label>
                 <div className="control">
