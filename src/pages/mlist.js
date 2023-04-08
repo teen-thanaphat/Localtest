@@ -7,6 +7,8 @@ function Mlist() {
 
   const [material, setMaterial] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
 
   useEffect(() => {
     getMaterial();
@@ -21,9 +23,15 @@ function Mlist() {
     setSearchTerm(event.target.value);
   }
 
-  const filtered = material.filter(val =>
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = material.filter(val =>
     val.material_name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  ).slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalPages = Math.ceil(material.length / itemsPerPage);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
 
@@ -52,9 +60,9 @@ function Mlist() {
             </tr>
           </thead>
           <tbody>
-            {filtered.map((val, index) => (
+            {currentItems.map((val, index) => (
               <tr key={val.material_Id}>
-                <td>{index + 1}</td>
+                <td>{index + 1 + (currentPage - 1) * itemsPerPage}</td>
                 <td>{val.material_name}</td>
                 <td>{val.material_unit}</td>
                 <td>{val.material_remaining}</td>
@@ -67,6 +75,15 @@ function Mlist() {
             ))}
           </tbody>
         </table>
+        <nav>
+          <ul className="pagination">
+            {[...Array(totalPages)].map((_, index) => (
+              <li key={index} className={`page-item ${index + 1 === currentPage ? 'active' : ''}`}>
+                <button onClick={() => paginate(index + 1)} className="page-link">{index + 1}</button>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </div>
   );

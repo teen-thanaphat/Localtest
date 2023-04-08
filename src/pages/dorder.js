@@ -7,6 +7,8 @@ function Dshow() {
 
   const [orderd, setOrderd] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
 
   useEffect(() => {
     getOrderd();
@@ -21,9 +23,15 @@ function Dshow() {
     setSearchTerm(event.target.value);
   }
 
-  const filtered = orderd.filter(val =>
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = orderd.filter(val =>
     val.durablearticles_name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  ).slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalPages = Math.ceil(orderd.length / itemsPerPage);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className="columns mt-5 is-centered">
@@ -43,7 +51,7 @@ function Dshow() {
         <div className="field">
           <div className="control">
             <CSVLink
-              data={filtered}
+              data={orderd}
               filename={"order_durablearticles.csv"}
               className="button is-link "
               class="btn btn-success"
@@ -57,6 +65,7 @@ function Dshow() {
         <table class="table">
           <thead>
             <tr>
+              <th scope="col">ลำดับ</th>
               <th scope="col">เลขครุภัณฑ์</th>
               <th scope="col">ชื่อครุภัณฑ์</th>
               <th scope="col">วันที่เบิก</th>
@@ -65,9 +74,10 @@ function Dshow() {
             </tr>
           </thead>
           <tbody>
-            {filtered.map((val, index) => (
+            {currentItems.map((val, index) => (
               val.order_durablearticles_status === 'อนุมัติ' || val.order_durablearticles_status === 'ไม่อนุมัติ' ? (
                 <tr key={val.order_durablearticles_Id}>
+                  <td>{index + 1 + (currentPage - 1) * itemsPerPage}</td>
                   <td>{val.durablearticles_Id}</td>
                   <td>{val.durablearticles_name}</td>
                   <td>{(val.order_durablearticles_date == null) ? "" : new Date(val.order_durablearticles_date).toLocaleDateString('en-GB',{day: 'numeric', month: 'numeric', year: 'numeric'})}</td>
@@ -78,12 +88,18 @@ function Dshow() {
             ))}
           </tbody>
         </table>
+        <nav>
+          <ul className="pagination">
+            {[...Array(totalPages)].map((_, index) => (
+              <li key={index} className={`page-item ${index + 1 === currentPage ? 'active' : ''}`}>
+                <button onClick={() => paginate(index + 1)} className="page-link">{index + 1}</button>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </div >
   );
 };
-
-
-
 
 export default Dshow

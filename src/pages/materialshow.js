@@ -8,6 +8,8 @@ function Materialshow() {
 
   const [material, setMaterial] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
 
   useEffect(() => {
     getMaterial();
@@ -22,12 +24,19 @@ function Materialshow() {
     setSearchTerm(event.target.value);
   }
 
-  const filteredMaterial = material.filter(val =>
+  //page
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = material.filter(val =>
     val.material_name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  ).slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalPages = Math.ceil(material.length / itemsPerPage);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="columns mt-5 is-centered">
+    <div className="columns mt-3 is-centered">
       <div className="column is-half">
         <div className="field">
           <div className="control">
@@ -44,7 +53,7 @@ function Materialshow() {
         <table className="table">
           <thead>
             <tr>
-            <th scope="col">ลำดับ</th>
+              <th scope="col">ลำดับ</th>
               <th scope="col">เลขวัสดุ</th>
               <th scope="col">ชื่อ</th>
               <th scope="col">ราคา</th>
@@ -55,9 +64,9 @@ function Materialshow() {
             </tr>
           </thead>
           <tbody>
-            {filteredMaterial.map((val, index) => (
+            {currentItems.map((val, index) => (
               <tr key={val.material_Id}>
-                <td>{index + 1}</td>
+                <td>{index + 1 + (currentPage - 1) * itemsPerPage}</td>
                 <td scope="row">{val.material_Id}</td>
                 <td>{val.material_name}</td>
                 <td>{val.material_price}</td>
@@ -69,6 +78,16 @@ function Materialshow() {
             ))}
           </tbody>
         </table>
+
+        <nav>
+          <ul className="pagination">
+            {[...Array(totalPages)].map((_, index) => (
+              <li key={index} className={`page-item ${index + 1 === currentPage ? 'active' : ''}`}>
+                <button onClick={() => paginate(index + 1)} className="page-link">{index + 1}</button>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </div>
   );

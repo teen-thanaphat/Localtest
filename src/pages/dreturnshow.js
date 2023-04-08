@@ -7,6 +7,8 @@ function Dreturnshow() {
 
   const [returnd, setReturnd] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
 
   useEffect(() => {
     getReturnd();
@@ -21,9 +23,15 @@ function Dreturnshow() {
     setSearchTerm(event.target.value);
   }
 
-  const filtered = returnd.filter(val =>
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = returnd.filter(val =>
     val.durablearticles_name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  ).slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalPages = Math.ceil(returnd.length / itemsPerPage);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className="columns mt-5 is-centered">
@@ -52,9 +60,9 @@ function Dreturnshow() {
             </tr>
           </thead>
           <tbody>
-            {filtered.map((val, index) => (
+            {currentItems.map((val, index) => (
               <tr key={val.return_durablearticles_Id}>
-                <td>{index + 1}</td>
+                <td>{index + 1 + (currentPage - 1) * itemsPerPage}</td>
                 <td>{val.durablearticles_Id}</td>
                 <td>{val.durablearticles_name}</td>
                 <td>{val.return_durablearticles_status}</td>
@@ -64,6 +72,15 @@ function Dreturnshow() {
             ))}
           </tbody>
         </table>
+        <nav>
+          <ul className="pagination">
+            {[...Array(totalPages)].map((_, index) => (
+              <li key={index} className={`page-item ${index + 1 === currentPage ? 'active' : ''}`}>
+                <button onClick={() => paginate(index + 1)} className="page-link">{index + 1}</button>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </div>
   );
