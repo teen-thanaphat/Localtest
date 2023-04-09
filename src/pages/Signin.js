@@ -76,6 +76,7 @@ function LoginForm() {
         {errorMessage && <div className="error-message">{errorMessage}</div>}
         <button type="submit" className="btn btn-primary">Log in</button>
       </form>
+      <br/><a>ระบบเบิกจ่ายวัสดุและครุภัณฑ์</a>
     </div>
   );
 }
